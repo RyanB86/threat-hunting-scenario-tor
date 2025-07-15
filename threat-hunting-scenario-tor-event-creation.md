@@ -87,7 +87,10 @@ DeviceFileEvents
 ---
 
 ## Additional Notes:
-- **None**
+1. Similar to past issues like CVE-2024‑21388, Microsoft Edge had a flaw where a private API allowed silent installation of extensions—no user consent required. If edge_checkout_page_validator.js leverages private APIs or hidden endpoints, an attacker could misuse it to embed unauthorized scripts or UI elements into checkout pages.
+
+2. Overly Broad Permissions
+The script interacts deeply with checkout pages—accessing DOM, parsing forms, injecting UI. If its permissions aren’t properly constrained, malicious actors could hijack it, inject rogue JavaScript, or exfiltrate sensitive user data (addresses, payment details)—a classic case of insufficient privilege containment.
 
 ---
 
