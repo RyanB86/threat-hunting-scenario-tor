@@ -99,24 +99,30 @@ DeviceNetworkEvents
 
 ---
 
+Below is a timeline reconstruction showing when Tor was downloaded, installed, and used on the "arklab" workstation:
+
 ## Chronological Event Timeline 
 
-### 1. File Download - TOR Installer
 
-- **Timestamp:** `2024-11-08T22:14:48.6065231Z`
-- **Event:** The user "employee" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
+### 1. File Download - TOR Installer
+ User arklab downloaded Tor installer and extracted its components on the desktop, creating various Tor-related files (e.g., tor-browser.exe, and suspicious edge_checkout_page_validator.js).
+ 
+- **Timestamp:** `2025‑07‑05T19:49:52.1224649Z`
+- **Event:** The user "arklab" downloaded a file named `tor‑browser‑windows‑x86_64‑portable‑14.5.4.exe` to the Downloads folder.
 - **Action:** File download detected.
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\arklab\Desktop`
 
 ### 2. Process Execution - TOR Browser Installation
+The Tor Browser installer was launched from the Downloads folder by user "arklab". The action generated a process with a recorded SHA256 to verify integrity
 
-- **Timestamp:** `2024-11-08T22:16:47.4484567Z`
-- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
+- **Timestamp:** `2025‑07‑05T19:51:25.0126895Z`
+- **Event:** The user "arklab" executed the file `tor‑browser‑windows‑x86_64‑portable‑14.5.4.exe` in silent mode, initiating a background installation of the TOR Browser.
 - **Action:** Process creation detected.
-- **Command:** `tor-browser-windows-x86_64-portable-14.0.1.exe /S`
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **Command:** `tor‑browser‑windows‑x86_64‑portable‑14.5.4.exe`
+- **File Path:** `C:\Users\arklab\Downloads`
 
 ### 3. Process Execution - TOR Browser Launch
+Evidence shows Tor (via tor.exe) actually ran for the first time, indicating the Tor Browser was opened.
 
 - **Timestamp:** `2024-11-08T22:17:21.6357935Z`
 - **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
@@ -124,12 +130,13 @@ DeviceNetworkEvents
 - **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
 
 ### 4. Network Connection - TOR Network
-
-- **Timestamp:** `2024-11-08T22:18:01.1246358Z`
-- **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
+ Shortly after launch, the Tor Browser process successfully connected to 127.0.0.1:9151, establishing standard internal communication between Firefox and the Tor client.
+ 
+- **Timestamp:** `2025‑07‑05T20:18:40.0814438Z`
+- **Event:** A network connection to IP `127.0.0.1:9151` on port ` 9151 ` by user "arklab" was established using `tor.exe`, confirming TOR browser network activity.
 - **Action:** Connection success.
-- **Process:** `tor.exe`
-- **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
+- **Process:** `firefox.exe`
+- **File Path:** `…\Desktop\Tor Browser\Browser\firefox.exe`
 
 ### 5. Additional Network Connections - TOR Browser Activity
 
