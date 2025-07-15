@@ -124,10 +124,10 @@ The Tor Browser installer was launched from the Downloads folder by user "arklab
 ### 3. Process Execution - TOR Browser Launch
 Evidence shows Tor (via tor.exe) actually ran for the first time, indicating the Tor Browser was opened.
 
-- **Timestamp:** `2024-11-08T22:17:21.6357935Z`
-- **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
+- **Timestamp:** `2025‑07‑05T20:18:38.4840384Z`
+- **Event:** User "arklab" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
 - **Action:** Process creation of TOR browser-related executables detected.
-- **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
+- **File Path:** `C:\Users\\Desktop\Tor Browser\Browser\firefox.exe`
 
 ### 4. Network Connection - TOR Network
  Shortly after launch, the Tor Browser process successfully connected to 127.0.0.1:9151, establishing standard internal communication between Firefox and the Tor client.
@@ -136,33 +136,33 @@ Evidence shows Tor (via tor.exe) actually ran for the first time, indicating the
 - **Event:** A network connection to IP `127.0.0.1:9151` on port ` 9151 ` by user "arklab" was established using `tor.exe`, confirming TOR browser network activity.
 - **Action:** Connection success.
 - **Process:** `firefox.exe`
-- **File Path:** `…\Desktop\Tor Browser\Browser\firefox.exe`
+- **File Path:** `C:\Users\\Desktop\Tor Browser\Browser\firefox.exe`
 
-### 5. Additional Network Connections - TOR Browser Activity
 
-- **Timestamps:**
-  - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
-  - `2024-11-08T22:18:16Z` - Local connection to `127.0.0.1` on port `9150`.
-- **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
-- **Action:** Multiple successful connections detected.
+Similar to past issues like CVE-2024‑21388, Microsoft Edge had a flaw where a private API allowed silent installation of extensions—no user consent required. 
+If edge_checkout_page_validator.js leverages private APIs or hidden endpoints, an attacker could misuse it to embed unauthorized scripts or UI elements into checkout pages.
 
-### 6. File Creation - TOR Shopping List
-
-- **Timestamp:** `2024-11-08T22:27:19.7259964Z`
-- **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
-- **Action:** File creation detected.
-- **File Path:** `C:\Users\employee\Desktop\tor-shopping-list.txt`
-
----
+Overly Broad Permissions
+The script interacts deeply with checkout pages—accessing DOM, parsing forms, injecting UI. If its permissions aren’t properly constrained, malicious actors could hijack it, inject rogue JavaScript, or exfiltrate sensitive user data (addresses, payment details)—a classic case of insufficient privilege containment.
 
 ## Summary
 
-The user "employee" on the "threat-hunt-lab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the "shopping list" file.
+The user "arklab" on the "arklab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `edge_checkout_page_validator.js`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the installer + extracted file.
+
+Installer Download: User downloaded a portable Tor Browser installer.
+Installation Event: The installer was executed, verified via SHA256.
+Launch & Execution: The Tor Browser executable and Tor process launched.
+Internal Connection: A successful localhost connection (9151) confirms functional Tor usage.
+Conclusion: The user “arklab” actively installed and ran Tor Browser on the corporate device.
+
+Tor Browser uses localhost port 9151 to manage connections via its embedded Tor client (tor.exe)—a normal and expected behavior. The installer and executable names match official Tor Browser patterns.
+The initial drop of files (installer + extracted folder) flags a deliberate installation attempt by the user (arklab). 
+
 
 ---
 
 ## Response Taken
 
-TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `employee`. The device was isolated, and the user's direct manager was notified.
+TOR usage was confirmed on endpoint "arklab" by the user "arklab". The device was isolated and the user's direct manager was notified..
 
 ---
